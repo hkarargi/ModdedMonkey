@@ -14,6 +14,9 @@ using Il2CppAssets.Scripts.Models.Towers.Behaviors.Emissions;
 using Il2Cpp;
 using Il2CppAssets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Il2CppAssets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Display;
+using Il2CppAssets.Scripts.Unity.Display;
+using System.Xml.Linq;
 
 [assembly: MelonInfo(typeof(ModdedMonkey.ModdedMonkey), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -22,6 +25,15 @@ namespace ModdedMonkey;
 
 public class ModdedMonkey : BloonsTD6Mod
 {
+    public class Cheese : ModDisplay
+    {
+        public override string BaseDisplay => Generic2dDisplay;
+
+        public override void ModifyDisplayNode(UnityDisplayNode node)
+        {
+            Set2DTexture(node, Name);
+        }
+    }
     public override void OnApplicationStart()
     {
         ModHelper.Msg<ModdedMonkey>("Modded Monkey! Loading Accomplished.");
@@ -35,7 +47,7 @@ public class ModdedMonkey : BloonsTD6Mod
         public override string Description => "";
         public override string BaseTower => "DartMonkey";
         public override int Cost => 250;
-        public override int MaxLevel => 15;
+        public override int MaxLevel => 20;
         public override float XpRatio => 1f;
         public override string Title => "Modded Monkey";
         public override string Level1Description => "";
@@ -224,6 +236,68 @@ public class ModdedMonkey : BloonsTD6Mod
         {
             AttackModel attackModel = towerModel.GetAttackModel();
             attackModel.weapons[0].rate *= 0.5f;
+        }
+        public override string Portrait => "Portrait.png";
+    }
+    public class Level16 : ModHeroLevel<ModdedMonkeyTower>
+    {
+        public override string Description => "some people asked me to add more levels and i think ill do that. stupid idea. 64 projectiles...";
+
+        public override int Level => 16;
+        public override void ApplyUpgrade(TowerModel towerModel)
+        {
+            AttackModel attackModel = towerModel.GetAttackModel();
+            attackModel.weapons[0].rate *= 0.5f;
+            attackModel.weapons[0].emission = new ArcEmissionModel("ArcEmissionModel_Tripapult", 64, 0f, 15f, null, false, true);
+        }
+        public override string Portrait => "Portrait.png";
+    }
+    public class Level17 : ModHeroLevel<ModdedMonkeyTower>
+    {
+        public override string Description => "people are saying there are bugs... i do not care. its an intended feature. also i added pierce because i forgot to.";
+
+        public override int Level => 17;
+        public override void ApplyUpgrade(TowerModel towerModel)
+        {
+            AttackModel attackModel = towerModel.GetAttackModel();
+            attackModel.weapons[0].rate = 0.00000000000001f;
+            attackModel.weapons[0].projectile.pierce = 1000000;
+        }
+        public override string Portrait => "Portrait.png";
+    }
+    public class Level18 : ModHeroLevel<ModdedMonkeyTower>
+    {
+        public override string Description => "stupid idea... damage = 1000000";
+
+        public override int Level => 18;
+        public override void ApplyUpgrade(TowerModel towerModel)
+        {
+            AttackModel attackModel = towerModel.GetAttackModel();
+            attackModel.weapons[0].projectile.GetDamageModel().damage = 1000000;
+        }
+        public override string Portrait => "Portrait.png";
+    }
+    public class Level19 : ModHeroLevel<ModdedMonkeyTower>
+    {
+        public override string Description => "...cheese";
+
+        public override int Level => 19;
+        public override void ApplyUpgrade(TowerModel towerModel)
+        {
+            AttackModel attackModel = towerModel.GetAttackModel();
+            attackModel.weapons[0].projectile.ApplyDisplay<Cheese>();
+        }
+        public override string Portrait => "Portrait.png";
+    }
+    public class Level20 : ModHeroLevel<ModdedMonkeyTower>
+    {
+        public override string Description => "funny idea... 128... projectiles";
+
+        public override int Level => 20;
+        public override void ApplyUpgrade(TowerModel towerModel)
+        {
+            AttackModel attackModel = towerModel.GetAttackModel();
+            attackModel.weapons[0].emission = new ArcEmissionModel("ArcEmissionModel_Tripapult", 128, 15f, 15f, null, false, true);
         }
         public override string Portrait => "Portrait.png";
     }
