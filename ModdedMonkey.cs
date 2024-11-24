@@ -1,13 +1,11 @@
-﻿using MelonLoader;
-using Il2CppAssets.Scripts.Models.GenericBehaviors;
+﻿using System;
+using MelonLoader;
 using Il2CppAssets.Scripts.Models.Towers;
 using Il2CppAssets.Scripts.Models.Towers.Behaviors;
 using Il2CppAssets.Scripts.Models.Towers.Behaviors.Attack;
 using Il2CppAssets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Il2CppAssets.Scripts.Utils;
 using BTD_Mod_Helper.Extensions;
 using BTD_Mod_Helper;
-using BTD_Mod_Helper.Api;
 using BTD_Mod_Helper.Api.Towers;
 using ModdedMonkey;
 using Il2CppAssets.Scripts.Models.Towers.Behaviors.Emissions;
@@ -16,7 +14,7 @@ using Il2CppAssets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Il2CppAssets.Scripts.Unity;
 using BTD_Mod_Helper.Api.Display;
 using Il2CppAssets.Scripts.Unity.Display;
-using System.Xml.Linq;
+using Il2CppNinjaKiwi.Common.ResourceUtils;
 
 [assembly: MelonInfo(typeof(ModdedMonkey.ModdedMonkey), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -37,8 +35,9 @@ public class ModdedMonkey : BloonsTD6Mod
     public override void OnApplicationStart()
     {
         ModHelper.Msg<ModdedMonkey>("Modded Monkey! Loading Accomplished.");
+        ModHelper.Msg<ModdedMonkey>("This mod tells a story of a person getting into modding in BTD6!");
         ModHelper.Msg<ModdedMonkey>("if it works im happy... this is my first mod let alone tower mod.");
-        ModHelper.Msg<ModdedMonkey>("i wonder if there is a way to add comments to code or smth like it to keep track of my code. what im doing is writing console messages.");
+        ModHelper.Msg<ModdedMonkey>("i wonder if there is a way to add comments to code or something like it to keep track of my code. what im doing is writing console messages.");
     }
     public class ModdedMonkeyTower : ModHero
     {
