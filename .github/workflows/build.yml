@@ -7,7 +7,7 @@ on:
     tags:
       - '*'
     paths:
-      - BloonsTD6 Mod Helper/**
+      - ModdedMonkey/**
       - .github/workflows/build.yml
   pull_request:
     branches:
