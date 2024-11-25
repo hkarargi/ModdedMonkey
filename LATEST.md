@@ -1,1 +1,3 @@
-When you push a tag to GitHub, the contents of this file will become your release message
+Works on v45
+
+Updated and recompiled for v45
